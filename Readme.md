@@ -37,8 +37,9 @@ Kindly clone the application from the repository and run npm install to get all 
 
 NODE_ENV= development
 PORT = 7000
-MONGO_URI=mongodb+srv://ubong_eduok:test1234@myportfolio.ffhj6qo.mongodb.net/test
+MONGO_URI=mongodb+srv://<account_name>:<password>@db.ffhj6qo.mongodb.net/test
 JWT_SECRET="Dont do anything"
+Remember to create an account with mongodb online and pass in your string above.
 
 # Possible endpoints
     1 base_url/api/v1/users/register
