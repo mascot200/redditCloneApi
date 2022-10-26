@@ -3,6 +3,7 @@ const router = express.Router();
 const  subRedditController  = require('../controllers/subRedditController')
 const { auth } = require('../middleware/authMiddleware')
 
-router.post('/subreddit/create', auth, subRedditController.createSubReddit )
+router.post('/create', auth, subRedditController.createSubReddit )
+router.put('/update/:id', auth, subRedditController.updateSubReddit)
 
 module.exports = router;

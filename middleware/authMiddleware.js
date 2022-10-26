@@ -22,13 +22,13 @@ const auth = async(req, res, next) => {
     } catch (error) {
       console.log(error)
       res.status(401)
-      throw new Error('Not authorized')
+      .json('Not authorized')
     }
   }
 
   if (!token) {
     res.status(401)
-    throw new Error('Not authorized, no token')
+      .json('Not authorized, no token')
   }
 }
 

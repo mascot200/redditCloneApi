@@ -1,23 +1,24 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const subReditSchema = new Schema({
-      community_name: {
+const postSchema = new Schema({
+      title: {
         type: String,
         required: [true, 'Subredit must have a name'],
       },
      
-      description: {
+      body: {
         type: String,
         required: [true, 'Please add description'],
       },
 
-      community_type: {
-        type: String,
-        required: [true, 'Choose a community type']
-      },
 
       user_id: {
+        type: String,
+        required: [true]
+      },
+
+      subredit_id: {
         type: String,
         required: [true]
       }
@@ -27,4 +28,4 @@ const subReditSchema = new Schema({
       timestamps: true,
 })
 
-module.exports = mongoose.model('SubRedit', subReditSchema)
+module.exports = mongoose.model('Post', postSchema)
