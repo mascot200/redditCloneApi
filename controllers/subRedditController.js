@@ -1,5 +1,6 @@
 const { response } = require('express')
 const SubRedit = require('../models/subReditModel')
+const {monitorSubReditCreationUsingHasNext, monitorSubReditUpdateUsingHasNext} = require('../ChangeStream')
 
 
 // @desc    Create a new SubRedit
@@ -15,8 +16,10 @@ const createSubReddit = async (req, res) => {
             community_type
         }
         const createdReddit = await SubRedit.create(payload)
+        monitorSubReditCreationUsingHasNext()
         res.status(200).json({ message: "Subredit has been created successfully", code: 200, status: 'Success', createdReddit})
-     } catch (error) {
+    
+    } catch (error) {
         console.log(error)
         res.status(500).json({message: "Error creating Subredit", code: 500, status: 'Error'})
      }
@@ -34,6 +37,7 @@ const updateSubReddit = async(req, res) => {
         }
         await SubRedit.findByIdAndUpdate(id, payload)
         res.status(200).json({ message: 'SubRedit updated successfully', code: 200, status: 'Success'})
+        monitorSubReditUpdateUsingHasNext()
     } catch (error) {
         res.status(500).json({ message: 'Error updating Redit', code: 500, status: 'Error', error})
     }

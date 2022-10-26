@@ -6,6 +6,7 @@ const port = process.env.PORT || 7000
 
 const userRoute = require('./routes/userRoutes')
 const subRedits = require('./routes/subReddit')
+const postRoutes = require('./routes/postRoute')
 const app = express()
 
 app.use(express.json())
@@ -14,6 +15,7 @@ app.use(express.urlencoded({ extended: false }))
 
 app.use('/api/v1/users/', userRoute)
 app.use('/api/v1/r/', subRedits)
+app.use('/api/v1/post/', postRoutes )
 
 
 
