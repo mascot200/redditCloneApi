@@ -4,15 +4,16 @@ const mongoose = require('mongoose');
 const mongoString = process.env.MONGO_URI
 const port = process.env.PORT || 7000
 
-
+const userRoute = require('./routes/userRoutes')
+const subRedits = require('./routes/subReddit')
 const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 
-app.use('/api/v1', postRoute)
-app.use('/api/v1', projectsRoute)
+app.use('/api/v1/users/', userRoute)
+app.use('/api/v1/r/', subRedits)
 
 
 

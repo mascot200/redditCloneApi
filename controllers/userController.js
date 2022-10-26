@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
-const User = require('../models/userModel')
+const User = require('../models/userModels')
+
 
 // @desc    Register new user
 // @route   POST /api/users
@@ -10,7 +11,7 @@ const register = async (req, res) => {
 
     if (!name || !email || !password) {
       res.status(400)
-      throw new Error('Please add all fields')
+         json({ message: 'Please all field is required'})
     }
   
     // Check if user exists
@@ -18,7 +19,7 @@ const register = async (req, res) => {
   
     if (userExists) {
       res.status(400)
-      throw new Error('User already exists')
+        .json({ message: 'User with the email already exists'})
     }
   
     // Hash password
@@ -41,7 +42,7 @@ const register = async (req, res) => {
       })
     } else {
       res.status(400)
-      throw new Error('Invalid user data')
+          .json({ message: 'Invalid data'})
     }
 }
 
@@ -63,8 +64,8 @@ const login = async (req, res) => {
         token: generateToken(user._id),
       })
     } else {
-      res.status(400)
-      throw new Error('Invalid credentials')
+      res.status(400).json({ message: 'Invalid credentials' })
+      
     }
   }
   
