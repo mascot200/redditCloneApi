@@ -31,6 +31,14 @@ const createSubReddit = async (req, res) => {
 const updateSubReddit = async(req, res) => {
     let {community_name, description, community_type  } = req.body;
     let id = req.params.id;
+
+     const reditExist = await SubRedit.findOne(id)
+     //check if user owns the redit 
+       if(!reditExist) return res.status(300).json({ message: "Redit does not exist"})
+       let reditUser = reditExist.user_id;
+        if(req.user.user_id != reditUser){
+            res.status(404).json({ message: "Sorry you are not allowed to edit this redit"})
+        }
     try {
         let payload = {
             community_name, description, community_type 
