@@ -48,6 +48,8 @@ Remember to create an account with mongodb online and pass in your string above.
     4 base_url/api/v1/r/update/id
     5 base_url/api/v1/post/create
     6 base_url/api/v1/post/comment
+    7 base_url/api/v1/posts
+    8 base_url/api/v1/r/redits
 
     
 # Payloads in requests and methods

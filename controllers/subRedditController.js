@@ -32,7 +32,7 @@ const updateSubReddit = async(req, res) => {
     let {community_name, description, community_type  } = req.body;
     let id = req.params.id;
 
-     const reditExist = await SubRedit.findOne(id)
+     const reditExist = await SubRedit.findById(id)
      //check if user owns the redit 
        if(!reditExist) return res.status(300).json({ message: "Redit does not exist"})
        let reditUser = reditExist.user_id;
@@ -51,7 +51,17 @@ const updateSubReddit = async(req, res) => {
     }
 }
 
+const getRedits = async(req, res) => {
+    try {
+        const redits = await SubRedit.find()
+        res.status(200).json(redits)
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 module.exports = {
     createSubReddit,
-    updateSubReddit
+    updateSubReddit,
+    getRedits
 }

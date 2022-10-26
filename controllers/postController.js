@@ -8,12 +8,12 @@ const {monitorPostUsingHasNext, monitorCommentUsingHasNext} = require('../Change
 // @route   POST /api/v1/post/
 // @access  Private
 const createPost = async (req, res) => {
-    let { title, user_id, redit_id, body } = req.body
+    let { title, user_id, subredit_id, body } = req.body
      try {
         const payload = {
             title,
             user_id,
-            redit_id,
+            subredit_id,
             body
         }
         const post = await Post.create(payload)
@@ -23,6 +23,15 @@ const createPost = async (req, res) => {
         console.log(error)
         res.status(500).json({message: "Error creating post", code: 500, status: 'Error'})
      }
+}
+
+const getPosts = async(req, res) => {
+    try {
+        const post = await Post.find()
+        res.status(200).json(post)
+    } catch (error) {
+        console.error(error)
+    }
 }
 
 
@@ -51,5 +60,6 @@ const createComment = async (req, res) => {
 
 module.exports = {
     createPost,
-    createComment
+    createComment,
+    getPosts
 }

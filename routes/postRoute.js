@@ -5,6 +5,7 @@ const { auth } = require('../middleware/authMiddleware')
 
 router.post('/create', auth, postController.createPost )
 router.post('/comment/create', auth, postController.createComment )
+router.get('/posts', postController.getPosts)
 
 
 module.exports = router;
